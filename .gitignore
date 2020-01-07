@@ -1,0 +1,9 @@
+/bin
+/ipch
+/*.db
+/*.opendb
+/.vs
+/Demo/x86
+/Demo/x64
+/UpdateThirdParty/x86
+/UpdateThirdParty/x64
