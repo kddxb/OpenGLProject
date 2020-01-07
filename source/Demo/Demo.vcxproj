@@ -69,19 +69,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)$(Configuration)</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)$(Configuration)</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)$(Configuration)</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(PlatformTarget)$(Configuration)</OutDir>
+    <OutDir>$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</OutDir>
     <IntDir>$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -89,12 +89,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -106,10 +106,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -123,14 +123,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -144,12 +144,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>

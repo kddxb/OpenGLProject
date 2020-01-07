@@ -1,9 +1,9 @@
 /bin
 /ipch
-/*.db
-/*.opendb
-/.vs
-/Demo/x86
-/Demo/x64
-/UpdateThirdParty/x86
-/UpdateThirdParty/x64
+/source/*.db
+/source/*.opendb
+/source/.vs
+/source/Demo/x86
+/source/Demo/x64
+/source/UpdateThirdParty/x86
+/source/UpdateThirdParty/x64

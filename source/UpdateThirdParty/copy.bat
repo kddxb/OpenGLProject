@@ -1,7 +1,7 @@
 ::echo %cd%
 ::echo %~dp0
 
-set ROOTDIR=..\
+set ROOTDIR=..\..\
 set PLATFORM=%~1
 set CONFIGURATION=%~2
 
