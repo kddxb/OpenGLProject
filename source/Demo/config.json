@@ -1,0 +1,11 @@
+{
+  "window": {
+    "initTitle": "LearnOpenGL",
+    "initWidth": 800,
+    "initHeight": 600
+  },
+  "openglVersion": {
+    "major": 3,
+    "minor": 3
+  }
+}

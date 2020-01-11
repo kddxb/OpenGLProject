@@ -1,22 +1,31 @@
 #include "stdafx.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <jsoncpp/json.h>
 #include <iostream>
+#include <fstream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
-
 int main()
 {
+	std::ifstream inStream("config.json");
+	Json::Reader reader;
+	Json::Value root;
+	reader.parse(inStream, root);
+	int openglMajorVersion = root["openglVersion"]["major"].asInt();
+	int openglMinorVersion = root["openglVersion"]["minor"].asInt();
+	std::string initWindowTitle = root["window"]["initTitle"].asString();
+	int initWindowWidth = root["window"]["initWidth"].asInt();
+	int initWindowHeight = root["window"]["initHeight"].asInt();
+
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, openglMajorVersion);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, openglMinorVersion);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "OpenGL´°¿Ú", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(initWindowWidth, initWindowHeight, initWindowTitle.c_str(), nullptr, nullptr);
 	if (!window)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -29,7 +38,7 @@ int main()
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl;
-		return -1; 
+		return -1;
 	}
 
 	while (!glfwWindowShouldClose(window))

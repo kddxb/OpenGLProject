@@ -3,7 +3,5 @@
 /source/*.db
 /source/*.opendb
 /source/.vs
-/source/Demo/x86
-/source/Demo/x64
-/source/UpdateThirdParty/x86
-/source/UpdateThirdParty/x64
+/source/*/x86
+/source/*/x64
