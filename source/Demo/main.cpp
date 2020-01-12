@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include "Program.h"
+#include <thread>
+#include <chrono>
 
 GLFWwindow* GetMainWindow();
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -28,49 +30,57 @@ int main()
 		return -1;
 	}
 
-	unsigned int VAO;
+	unsigned int VAO, VBO, EBO;
+	float vertices[] = {
+		-0.5,-0.5,0,
+		0.5,-0.5,0,
+		0.5,0.5,0,
+		-0.5,0.5,0
+	};
+
+	unsigned int indices[] = {
+		0,1,2,
+		2,3,0
+	};
+
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
-	unsigned int VBO;
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	float vertices[] = {
-		0.5f, 0.5f, 0.0f,   // 右上角
-		0.5f, -0.5f, 0.0f,  // 右下角
-		-0.5f, -0.5f, 0.0f, // 左下角
-		-0.5f, 0.5f, 0.0f   // 左上角
-	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	unsigned int EBO;
 	glGenBuffers(1, &EBO);
-	unsigned int indices[] = { // 注意索引从0开始! 
-		0, 1, 3, // 第一个三角形
-		1, 2, 3  // 第二个三角形
-	};
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-
-	Program* pProgram = ProgramFactory::Get(ProgramType::Default);
-
-	 
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), static_cast<void*>(0));
 	glEnableVertexAttribArray(0);
 
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	Program* defaultProgram = ProgramFactory::Get(ProgramType::Default);
+	glm::vec3 uColor;
+
+	std::thread([&uColor]() {
+		static int t = 0;
+		while (true)
+		{
+			uColor = glm::vec3(cos(t / 100.0) / 2 + 0.5, sin(t / 100.0) / 2 + 0.5, 0);
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			t++;
+		}
+	}).detach();
 
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
-
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		pProgram->Use();
+		defaultProgram->Use();
+		defaultProgram->SetUniform("uColor", uColor);
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, static_cast<void*>(0));
 		glBindVertexArray(0);
 
 		glfwSwapBuffers(window);
