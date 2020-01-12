@@ -55,16 +55,10 @@ int main()
 	glBindVertexArray(0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	Program* defaultProgram = ProgramFactory::Get(ProgramType::Default);
-	defaultProgram->Use();
-	defaultProgram->SetUniform("model", glm::mat4(1));
-	defaultProgram->SetUniform("view", glm::mat4(1));
-	defaultProgram->SetUniform("projection", glm::mat4(1));
-
 	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 	while (!glfwWindowShouldClose(window))
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
+		OpenGLWindow::RenderScene();
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, indices.size() * 3, GL_UNSIGNED_INT, static_cast<void*>(0));
