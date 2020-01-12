@@ -97,8 +97,7 @@
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy.bat $(PlatformTarget) $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,8 +111,7 @@
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy.bat $(PlatformTarget) $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,8 +131,7 @@
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy.bat $(PlatformTarget) $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,8 +149,7 @@
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy.bat $(PlatformTarget) $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -168,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config.json" />
+    <None Include="copy.bat" />
+    <None Include="shaders\test.frag" />
+    <None Include="shaders\test.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
