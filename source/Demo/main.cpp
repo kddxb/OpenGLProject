@@ -62,23 +62,11 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	Program* defaultProgram = ProgramFactory::Get(ProgramType::Default);
-	glm::vec3 uColor;
-
-	std::thread([&uColor]() {
-		static int t = 0;
-		while (true)
-		{
-			uColor = glm::vec3(cos(t / 100.0) / 2 + 0.5, sin(t / 100.0) / 2 + 0.5, 0);
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
-			t++;
-		}
-	}).detach();
 
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
 		defaultProgram->Use();
-		defaultProgram->SetUniform("uColor", uColor);
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, static_cast<void*>(0));
 		glBindVertexArray(0);
