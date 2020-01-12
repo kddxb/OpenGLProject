@@ -32,28 +32,29 @@ int main()
 	}
 
 	unsigned int VAO, VBO, EBO;
-	Vertex vertices[] = {
+	std::vector<Vertex> vertices = {
 		Vertex(glm::vec3(-0.5,-0.5,0),glm::vec3(1,0,0)),
 		Vertex(glm::vec3(0.5,-0.5,0),glm::vec3(0,1,0)),
 		Vertex(glm::vec3(0.5,0.5,0),glm::vec3(0,0,1)),
 		Vertex(glm::vec3(-0.5,0.5,0),glm::vec3(1,1,0)),
 	};
 
-	unsigned int indices[] = {
-		0,1,2,
-		2,3,0
+	std::vector<glm::uvec3> indices = {
+		glm::uvec3(0,1,2),
+		glm::uvec3(2,3,0),
 	};
+
 
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*vertices.size(), vertices.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(glm::uvec3)*indices.size(), indices.data(), GL_STATIC_DRAW);
 
 	glVertexAttribPointer(Vertex::VertexAttributeLocation::Position, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex,position)));
 	glEnableVertexAttribArray(Vertex::VertexAttributeLocation::Position);
@@ -70,7 +71,7 @@ int main()
 		processInput(window);
 		defaultProgram->Use();
 		glBindVertexArray(VAO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, static_cast<void*>(0));
+		glDrawElements(GL_TRIANGLES, indices.size() * 3, GL_UNSIGNED_INT, static_cast<void*>(0));
 		glBindVertexArray(0);
 
 		glfwSwapBuffers(window);
