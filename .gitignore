@@ -5,3 +5,4 @@
 /source/.vs
 /source/*/x86
 /source/*/x64
+/source/ipch

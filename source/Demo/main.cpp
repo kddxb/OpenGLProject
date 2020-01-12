@@ -1,33 +1,22 @@
-#include "stdafx.h"
+#include "StdAfx.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <jsoncpp/json.h>
 #include <iostream>
 #include <fstream>
-#include "Program.h"
 #include <thread>
 #include <chrono>
+#include <functional>
+#include "Program.h"
 #include "Vertex.h"
-
-GLFWwindow* GetMainWindow();
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow *window);
+#include "OpenGLWindow.h"
 
 int main()
 {
-	GLFWwindow* window = GetMainWindow();
+	GLFWwindow* window = OpenGLWindow::Create();
 	if (!window)
 	{
-		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
-	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-	 
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
 
@@ -44,7 +33,6 @@ int main()
 		glm::uvec3(2,3,0),
 	};
 
-
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
@@ -58,7 +46,9 @@ int main()
 
 	glVertexAttribPointer(Vertex::VertexAttributeLocation::Position, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex,position)));
 	glEnableVertexAttribArray(Vertex::VertexAttributeLocation::Position);
-	glVertexAttribPointer(Vertex::VertexAttributeLocation::Color, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, color)));
+	glVertexAttribPointer(Vertex::VertexAttributeLocation::Normal, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, normal)));
+	glEnableVertexAttribArray(Vertex::VertexAttributeLocation::Normal);
+	glVertexAttribPointer(Vertex::VertexAttributeLocation::Color, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(offsetof(Vertex, color)));
 	glEnableVertexAttribArray(Vertex::VertexAttributeLocation::Color);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -66,10 +56,16 @@ int main()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	Program* defaultProgram = ProgramFactory::Get(ProgramType::Default);
+	defaultProgram->Use();
+	defaultProgram->SetUniform("model", glm::mat4(1));
+	defaultProgram->SetUniform("view", glm::mat4(1));
+	defaultProgram->SetUniform("projection", glm::mat4(1));
+
+	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 	while (!glfwWindowShouldClose(window))
 	{
-		processInput(window);
-		defaultProgram->Use();
+		glClear(GL_COLOR_BUFFER_BIT);
+
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, indices.size() * 3, GL_UNSIGNED_INT, static_cast<void*>(0));
 		glBindVertexArray(0);
@@ -80,37 +76,4 @@ int main()
 
 	glfwTerminate();
 	return 0;
-}
-
-
-GLFWwindow* GetMainWindow()
-{
-	std::ifstream inStream("config.json");
-	Json::Reader reader;
-	Json::Value root;
-	reader.parse(inStream, root);
-	int openglMajorVersion = root["openglVersion"]["major"].asInt();
-	int openglMinorVersion = root["openglVersion"]["minor"].asInt();
-	std::string initWindowTitle = root["window"]["initTitle"].asString();
-	int initWindowWidth = root["window"]["initWidth"].asInt();
-	int initWindowHeight = root["window"]["initHeight"].asInt();
-
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, openglMajorVersion);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, openglMinorVersion);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-	GLFWwindow* window = glfwCreateWindow(initWindowWidth, initWindowHeight, initWindowTitle.c_str(), nullptr, nullptr);
-	return window;
-}
-
-void processInput(GLFWwindow *window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-}
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-{
-	glViewport(0, 0, width, height);
 }

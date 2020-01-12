@@ -18,6 +18,39 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="config.json" />
+    <None Include="copy.bat" />
+    <None Include="res\default.frag" />
+    <None Include="res\default.vert" />
+    <None Include="res\programs.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="camera\Camera.cpp" />
+    <ClCompile Include="geometry\Sphere.cpp" />
+    <ClCompile Include="geometry\Vertex.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGLWindow.cpp" />
+    <ClCompile Include="shader\Program.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="tool\FileTool.cpp" />
+    <ClCompile Include="tool\MathTool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="camera\Camera.h" />
+    <ClInclude Include="geometry\Sphere.h" />
+    <ClInclude Include="geometry\Vertex.h" />
+    <ClInclude Include="OpenGLWindow.h" />
+    <ClInclude Include="shader\Program.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="tool\FileTool.h" />
+    <ClInclude Include="tool\MathTool.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{86E299FB-A6AC-4203-ADF9-9D8027EF5DD4}</ProjectGuid>
     <RootNamespace>Demo</RootNamespace>
@@ -89,8 +122,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -105,7 +139,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
@@ -121,8 +157,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -141,7 +178,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -152,27 +191,6 @@
       <Command>copy.bat $(PlatformTarget) $(Configuration)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Program.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Program.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Vertex.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="config.json" />
-    <None Include="copy.bat" />
-    <None Include="shaders\programs.json" />
-    <None Include="shaders\default.frag" />
-    <None Include="shaders\default.vert" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

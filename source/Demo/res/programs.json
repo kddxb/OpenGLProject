@@ -1,0 +1,18 @@
+{
+  "programs": [
+    {
+      "name": "Default",
+      "type": 0,
+      "shaders": [
+        {
+          "type": 0,
+          "path": "res/default.vert"
+        },
+        {
+          "type": 1,
+          "path": "res/default.frag"
+        }
+      ]
+    }
+  ]
+}
