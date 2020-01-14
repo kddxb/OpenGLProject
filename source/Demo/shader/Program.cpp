@@ -9,7 +9,7 @@
 #include <GLAD/glad.h>
 #include <jsoncpp/json.h>
 
-Program::Program(const std::map<ShaderType, std::string>& shadersSource)
+Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool isFromFile)
 {
 	m_ID = glCreateProgram();
 	std::vector<unsigned int> toDeletedShader;
@@ -33,23 +33,32 @@ Program::Program(const std::map<ShaderType, std::string>& shadersSource)
 	for (const std::pair<ShaderType, std::string>& pair : shadersSource)
 	{
 		std::string shaderCode;
-		const std::string fileName = pair.second;
-		std::ifstream shaderFileStream;
-		shaderFileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-		try
+
+		if (!isFromFile)
 		{
-			shaderFileStream.open(fileName);
-			std::stringstream shaderStream, fShaderStream;
-			shaderStream << shaderFileStream.rdbuf();
-			shaderFileStream.close();
-			shaderCode = shaderStream.str();
+			shaderCode = pair.second;
 		}
-		catch (std::ifstream::failure e)
+		else
 		{
-			std::cout << "error:failed read file:" << fileName;
-			successCreated = false;
-			return;
+			const std::string fileName = pair.second;
+			std::ifstream shaderFileStream;
+			shaderFileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+			try
+			{
+				shaderFileStream.open(fileName);
+				std::stringstream shaderStream, fShaderStream;
+				shaderStream << shaderFileStream.rdbuf();
+				shaderFileStream.close();
+				shaderCode = shaderStream.str();
+			}
+			catch (std::ifstream::failure e)
+			{
+				std::cout << "error:failed read file:" << fileName;
+				successCreated = false;
+				return;
+			}
 		}
+		
 
 		const char* shaderCodeStr = shaderCode.c_str();
 		//自定义着色器类型与OpenGL着色器类型对照表
@@ -83,13 +92,13 @@ Program::Program(const std::map<ShaderType, std::string>& shadersSource)
 	}
 }
 
-Program::Program(const std::string& vertexPath, const std::string& fragmentPath)
-	: Program(std::map<ShaderType, std::string>{ {ShaderType::Vertex, vertexPath}, { ShaderType::Fragment,fragmentPath }})
+Program::Program(const std::string& vertexPath, const std::string& fragmentPath, bool isFromFile)
+	: Program(std::map<ShaderType, std::string>{ {ShaderType::Vertex, vertexPath}, { ShaderType::Fragment,fragmentPath }}, isFromFile)
 {
 }
 
-Program::Program(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath)
-	: Program(std::map<ShaderType, std::string>{ {ShaderType::Vertex, vertexPath}, { ShaderType::Geometry,geometryPath }, { ShaderType::Fragment,fragmentPath }})
+Program::Program(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath, bool isFromFile)
+	: Program(std::map<ShaderType, std::string>{ {ShaderType::Vertex, vertexPath}, { ShaderType::Geometry,geometryPath }, { ShaderType::Fragment,fragmentPath }}, isFromFile)
 {
 }
 

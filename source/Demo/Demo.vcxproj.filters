@@ -62,6 +62,15 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test01.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test02.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test03.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">

@@ -24,12 +24,13 @@ private:
 	Program(const Program&) = delete;
 	Program& operator=(const Program&) = delete;
 
+public:
 	//统一构造器
-	Program(const std::map<ShaderType, std::string>& shadersSource);
+	Program(const std::map<ShaderType, std::string>& shadersSource, bool isFromFile = true);
 	//顶点，片段程序
-	Program(const std::string& vertexPath, const std::string& fragmentPath);
+	Program(const std::string& vertexPath, const std::string& fragmentPath, bool isFromFile = true);
 	//顶点，片段，几何程序
-	Program(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath);
+	Program(const std::string& vertexPath, const std::string& fragmentPath, const std::string& geometryPath, bool isFromFile = true);
 
 public:
 	virtual ~Program();
