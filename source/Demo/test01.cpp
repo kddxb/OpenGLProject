@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Program.h"
 
+//顶点属性通过ABCABC形式存储
 int main01()
 {
 	glfwInit();

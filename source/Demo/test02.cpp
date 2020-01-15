@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Program.h"
 
+//glBufferSubData的使用，顶点属性通过AABBCC形式存储
 int main02()
 {
 	glfwInit();

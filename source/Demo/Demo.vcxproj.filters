@@ -71,6 +71,18 @@
     <ClCompile Include="test03.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="test04.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test05.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test06.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="test07.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">

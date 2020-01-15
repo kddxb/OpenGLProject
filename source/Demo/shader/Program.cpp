@@ -122,7 +122,7 @@ void Program::Link()const
 
 void Program::SetUniform(const std::string &name, bool value) const
 {
-	glUniform1i(glGetUniformLocation(this->m_ID, name.c_str()), int(value));
+    SetUniform(name, int(value));
 }
 
 void Program::SetUniform(const std::string &name, int value) const
@@ -175,6 +175,37 @@ void Program::SetUniform(const std::string &name, const glm::mat3 &mat) const
 void Program::SetUniform(const std::string &name, const glm::mat4 &mat) const
 {
 	glUniformMatrix4fv(glGetUniformLocation(this->m_ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<bool> &values) const
+{
+    const std::vector<int> ivalues(values.begin(), values.end());
+    SetUniform(name, ivalues);
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<int> &values) const
+{
+    glUniform1iv(glGetUniformLocation(this->m_ID, name.c_str()), values.size(), values.data());
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<float> &values) const
+{
+    glUniform1fv(glGetUniformLocation(this->m_ID, name.c_str()), values.size(), values.data());
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<glm::vec2> &values) const
+{
+    glUniform2fv(glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<glm::vec3>& values) const
+{
+    glUniform3fv(glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
+}
+
+void Program::SetUniform(const std::string &name, const std::vector<glm::vec4> &values) const
+{
+    glUniform4fv(glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
 }
 
 bool Program::CheckShaderCompileError(unsigned int shaderId, const ShaderType& shaderType)

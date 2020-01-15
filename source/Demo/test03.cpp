@@ -4,7 +4,8 @@
 #include <iostream>
 #include "Program.h"
 
-int main()
+//一个VAO对应多个VBO
+int main03()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

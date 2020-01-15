@@ -54,6 +54,13 @@ public:
 	void SetUniform(const std::string &name, const glm::mat3 &mat) const;
 	void SetUniform(const std::string &name, const glm::mat4 &mat) const;
 
+    void SetUniform(const std::string &name, const std::vector<bool> &values) const;
+    void SetUniform(const std::string &name, const std::vector<int> &values) const;
+    void SetUniform(const std::string &name, const std::vector<float> &values) const;
+    void SetUniform(const std::string &name, const std::vector<glm::vec2> &values) const;
+    void SetUniform(const std::string &name, const std::vector<glm::vec3> &values) const;
+    void SetUniform(const std::string &name, const std::vector<glm::vec4> &values) const;
+
 private:
 	//ºÏ≤È∆˜±‡“Î¥ÌŒÛ
 	bool CheckShaderCompileError(unsigned int shaderId, const ShaderType& shaderType);
