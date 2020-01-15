@@ -30,6 +30,7 @@
     <ClCompile Include="geometry\Sphere.cpp" />
     <ClCompile Include="geometry\Vertex.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="main10.cpp" />
     <ClCompile Include="OpenGLWindow.cpp" />
     <ClCompile Include="shader\Program.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -45,6 +46,8 @@
     <ClCompile Include="test05.cpp" />
     <ClCompile Include="test06.cpp" />
     <ClCompile Include="test07.cpp" />
+    <ClCompile Include="test08.cpp" />
+    <ClCompile Include="test09.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
   </ItemGroup>

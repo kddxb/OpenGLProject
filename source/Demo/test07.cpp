@@ -4,8 +4,8 @@
 #include <iostream>
 #include "Program.h"
 
-
-int main()
+//glDrawElementsBaseVertex实现动画效果
+int main07()
 {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -31,12 +31,17 @@ int main()
         return -1;
     }
 
-    float vertices[] = {
-        -0.5f, -0.5f, 0,	1,0,0,
-        0.5f, -0.5f,  0,	0,1,0,
-        0.5f,  0.5f,  0,	0,0,1,
-        -0.5f,  0.5f, 0,	1,1,1
-    };
+	std::vector<float> vertices;
+	for (int i = -10; i <= 10; ++i)
+	{
+		std::vector<float> tmp = {
+			-0.5f + 0.05f*i, -0.5f, 0,	1,0,0,
+			0.5f + 0.05f*i, -0.5f,  0,	0,1,0,
+			0.5f + 0.05f*i,  0.5f,  0,	0,0,1,
+			-0.5f + 0.05f*i,  0.5f, 0,	1,1,1
+		};
+		vertices.insert(vertices.end(), tmp.begin(), tmp.end());
+	}
 
     unsigned int indices[] = {
         0,1,2,
@@ -49,7 +54,7 @@ int main()
 
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -89,13 +94,12 @@ void main()
     program.Use();
 
     glClearColor(0.8, 0.8, 0.8, 1.0);
-    glPointSize(5);
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
         program.Use();
         glBindVertexArray(VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+		glDrawElementsBaseVertex(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr, (4 * int(glfwGetTime())) % (vertices.size() / 6));
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
