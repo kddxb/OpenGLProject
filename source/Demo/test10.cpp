@@ -5,7 +5,7 @@
 #include "Program.h"
 
 //“ªŒ¨Œ∆¿Ì
-int main()
+int main10()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

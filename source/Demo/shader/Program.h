@@ -61,6 +61,16 @@ public:
     void SetUniform(const std::string &name, const std::vector<glm::vec3> &values) const;
     void SetUniform(const std::string &name, const std::vector<glm::vec4> &values) const;
 
+    bool GetUniform(const std::string &name, bool& value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, int& value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, float& value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, glm::vec2 &value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, float& x, float& y, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, glm::vec3 &value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, float& x, float& y, float& z, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, glm::vec4 &value, bool checkSize = false) const;
+    bool GetUniform(const std::string &name, float& x, float& y, float& z, float& w, bool checkSize = false) const;
+
 private:
 	//ºÏ≤È∆˜±‡“Î¥ÌŒÛ
 	bool CheckShaderCompileError(unsigned int shaderId, const ShaderType& shaderType);
