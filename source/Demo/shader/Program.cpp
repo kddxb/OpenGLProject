@@ -8,6 +8,8 @@
 #include <string>
 #include <GLAD/glad.h>
 #include <jsoncpp/json.h>
+#include "texture.h"
+#include "Log.h"
 
 Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool isFromFile)
 {
@@ -53,7 +55,7 @@ Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool is
             }
             catch (std::ifstream::failure e)
             {
-                std::cout << "error:failed read file:" << fileName;
+				Log::GetInstance()->Write("error:failed read file:", LogLevel::Error);
                 successCreated = false;
                 return;
             }
@@ -120,190 +122,195 @@ void Program::Link()const
     glLinkProgram(this->m_ID);
 }
 
-void Program::SetUniform(const std::string &name, bool value) const
+void Program::SetUniform(const std::string &uniformName, bool value) const
 {
-    SetUniform(name, int(value));
+    SetUniform(uniformName, int(value));
 }
 
-void Program::SetUniform(const std::string &name, int value) const
+void Program::SetUniform(const std::string &uniformName, int value) const
 {
-    glProgramUniform1i(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), value);
+    glProgramUniform1i(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), value);
 }
 
-void Program::SetUniform(const std::string &name, float value) const
+void Program::SetUniform(const std::string &uniformName, float value) const
 {
-    glProgramUniform1f(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), value);
+    glProgramUniform1f(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), value);
 }
 
-void Program::SetUniform(const std::string &name, const glm::vec2 &value) const
+void Program::SetUniform(const std::string &uniformName, const glm::vec2 &value) const
 {
-    glProgramUniform2fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, &value[0]);
+    glProgramUniform2fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, &value[0]);
 }
-void Program::SetUniform(const std::string &name, float x, float y) const
+void Program::SetUniform(const std::string &uniformName, float x, float y) const
 {
-    glProgramUniform2f(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), x, y);
-}
-
-void Program::SetUniform(const std::string &name, const glm::vec3 &value) const
-{
-    glProgramUniform3fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, &value[0]);
-}
-void Program::SetUniform(const std::string &name, float x, float y, float z) const
-{
-    glProgramUniform3f(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), x, y, z);
+    glProgramUniform2f(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), x, y);
 }
 
-void Program::SetUniform(const std::string &name, const glm::vec4 &value) const
+void Program::SetUniform(const std::string &uniformName, const glm::vec3 &value) const
 {
-    glProgramUniform4fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, &value[0]);
+    glProgramUniform3fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, &value[0]);
 }
-void Program::SetUniform(const std::string &name, float x, float y, float z, float w) const
+void Program::SetUniform(const std::string &uniformName, float x, float y, float z) const
 {
-    glProgramUniform4f(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), x, y, z, w);
-}
-
-void Program::SetUniform(const std::string &name, const glm::mat2 &mat) const
-{
-    glProgramUniformMatrix2fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    glProgramUniform3f(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), x, y, z);
 }
 
-void Program::SetUniform(const std::string &name, const glm::mat3 &mat) const
+void Program::SetUniform(const std::string &uniformName, const glm::vec4 &value) const
 {
-    glProgramUniformMatrix3fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    glProgramUniform4fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, &value[0]);
+}
+void Program::SetUniform(const std::string &uniformName, float x, float y, float z, float w) const
+{
+    glProgramUniform4f(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), x, y, z, w);
 }
 
-void Program::SetUniform(const std::string &name, const glm::mat4 &mat) const
+void Program::SetUniform(const std::string &uniformName, const glm::mat2 &mat) const
 {
-    glProgramUniformMatrix4fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+    glProgramUniformMatrix2fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<bool> &values) const
+void Program::SetUniform(const std::string &uniformName, const glm::mat3 &mat) const
+{
+    glProgramUniformMatrix3fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Program::SetUniform(const std::string &uniformName, const glm::mat4 &mat) const
+{
+    glProgramUniformMatrix4fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, GL_FALSE, &mat[0][0]);
+}
+
+void Program::SetUniform(const std::string & uniformName, Texture * pTexture)const
+{
+	SetUniform(uniformName, pTexture->GetTextureUnit());
+}
+
+void Program::SetUniform(const std::string &uniformName, const std::vector<bool> &values) const
 {
     const std::vector<int> ivalues(values.begin(), values.end());
-    SetUniform(name, ivalues);
+    SetUniform(uniformName, ivalues);
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<int> &values) const
+void Program::SetUniform(const std::string &uniformName, const std::vector<int> &values) const
 {
-    glProgramUniform1iv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), values.size(), values.data());
+    glProgramUniform1iv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), values.size(), values.data());
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<float> &values) const
+void Program::SetUniform(const std::string &uniformName, const std::vector<float> &values) const
 {
-    glProgramUniform1fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), values.size(), values.data());
+    glProgramUniform1fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), values.size(), values.data());
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<glm::vec2> &values) const
+void Program::SetUniform(const std::string &uniformName, const std::vector<glm::vec2> &values) const
 {
-    glProgramUniform2fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
+    glProgramUniform2fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), values.size(), &values.front()[0]);
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<glm::vec3>& values) const
+void Program::SetUniform(const std::string &uniformName, const std::vector<glm::vec3>& values) const
 {
-    glProgramUniform3fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
+    glProgramUniform3fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), values.size(), &values.front()[0]);
 }
 
-void Program::SetUniform(const std::string &name, const std::vector<glm::vec4> &values) const
+void Program::SetUniform(const std::string &uniformName, const std::vector<glm::vec4> &values) const
 {
-    glProgramUniform4fv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), values.size(), &values.front()[0]);
+    glProgramUniform4fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), values.size(), &values.front()[0]);
 }
 
-bool Program::GetUniform(const std::string & name, bool & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, bool & value, bool checkSize) const
 {
     int iv;
-    GetUniform(name, iv);
+    GetUniform(uniformName, iv);
     value = iv != 0;
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, int & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, int & value, bool checkSize) const
 {
     if (checkSize)
     {
-        glGetnUniformiv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), sizeof(value), &value);
+        glGetnUniformiv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), sizeof(value), &value);
     }
     else
     {
-        glGetUniformiv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), &value);
+        glGetUniformiv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), &value);
     }
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, float & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, float & value, bool checkSize) const
 {
     if (checkSize)
     {
-        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), sizeof(value), &value);
+        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), sizeof(value), &value);
     }
     else
     {
-        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), &value);
+        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), &value);
     }
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, glm::vec2 & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, glm::vec2 & value, bool checkSize) const
 {
     if (checkSize)
     {
-        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), sizeof(value), &value[0]);
+        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), sizeof(value), &value[0]);
     }
     else
     {
-        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), &value[0]);
+        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), &value[0]);
     }
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, float & x, float & y, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, float & x, float & y, bool checkSize) const
 {
     glm::vec2 vv;
-    GetUniform(name, vv);
+    GetUniform(uniformName, vv);
     x = vv.x;
     y = vv.y;
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, glm::vec3 & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, glm::vec3 & value, bool checkSize) const
 {
     if (checkSize)
     {
-        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), sizeof(value), &value[0]);
+        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), sizeof(value), &value[0]);
     }
     else
     {
-        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), &value[0]);
+        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), &value[0]);
     }
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, float & x, float & y, float & z, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, float & x, float & y, float & z, bool checkSize) const
 {
     glm::vec3 vv;
-    GetUniform(name, vv);
+    GetUniform(uniformName, vv);
     x = vv.x;
     y = vv.y;
     z = vv.z;
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, glm::vec4 & value, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, glm::vec4 & value, bool checkSize) const
 {
     if (checkSize)
     {
-        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), sizeof(value), &value[0]);
+        glGetnUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), sizeof(value), &value[0]);
     }
     else
     {
-        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, name.c_str()), &value[0]);
+        glGetUniformfv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), &value[0]);
     }
     return true;
 }
 
-bool Program::GetUniform(const std::string & name, float & x, float & y, float & z, float & w, bool checkSize) const
+bool Program::GetUniform(const std::string & uniformName, float & x, float & y, float & z, float & w, bool checkSize) const
 {
     glm::vec4 vv;
-    GetUniform(name, vv);
+    GetUniform(uniformName, vv);
     x = vv.x;
     y = vv.y;
     z = vv.z;
@@ -329,7 +336,7 @@ bool Program::CheckShaderCompileError(unsigned int shaderId, const ShaderType& s
         m_ID = 0;
         glGetShaderInfoLog(shaderId, infoLogSize, nullptr, infoLog);
         std::string errInfo = std::string("error::shader compile error of type: ") + shaderTypeStrMap.at(shaderType) + "\ndetail: " + infoLog;
-        std::cout << errInfo;
+		Log::GetInstance()->Write(errInfo, LogLevel::Error);
         return false;
     }
     return true;
@@ -345,7 +352,7 @@ bool Program::CheckProgramLinkError()
     {
         glGetProgramInfoLog(m_ID, infoLogSize, nullptr, infoLog);
         std::string errInfo = std::string("error::program link error,detail: ") + "\n" + infoLog;
-        std::cout << errInfo;
+		Log::GetInstance()->Write(errInfo, LogLevel::Error);
         return false;
     }
     return true;
@@ -366,7 +373,7 @@ bool ProgramFactory::Init()
         for (int programIndex = 0; programIndex < int(programs.size()); ++programIndex)
         {
             Json::Value program = programs[programIndex];
-            std::string programName = program["name"].asString();
+            std::string programName = program["uniformName"].asString();
             ProgramType programType = static_cast<ProgramType>(program["type"].asInt());
             Json::Value shaders = program["shaders"];
             std::map<ShaderType, std::string> shadersSource;
@@ -384,12 +391,12 @@ bool ProgramFactory::Init()
     }
     catch (const std::exception& e)
     {
-        std::cout << e.what() << std::endl;
+		Log::GetInstance()->Write(e.what(), LogLevel::Error);
         return false;
     }
     catch (...)
     {
-        std::cout << "unknown exception" << std::endl;
+		Log::GetInstance()->Write("unknown exception", LogLevel::Error);
         return false;
     }
     return true;

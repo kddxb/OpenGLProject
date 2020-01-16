@@ -95,6 +95,18 @@
     <ClCompile Include="test11.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\Log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="config\Config.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">
@@ -119,6 +131,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="texture\texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="config\Config.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,9 +3,11 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "Program.h"
+#include "texture.h"
+#include <memory>
 
 
-int main()
+int main11()
 {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -32,11 +34,10 @@ int main()
     }
 
     float vertics[] = {
-        //position
-        -1,-1,0,
-        1,-1,0,
-        1,1,0,
-        -1,1,0,
+        -1,-1,0,	0,0,
+        1,-1,0,		1,0,
+        1,1,0,		1,1,
+        -1,1,0,		0,1
     };
 
     unsigned int indices[] = {
@@ -56,32 +57,44 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
     glEnableVertexAttribArray(0);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-    std::string vertexShader = { R"(
+	std::unique_ptr<Texture> upTexture1 = Texture::Create("res/image/container.jpg", 0);
+	std::unique_ptr<Texture> upTexture2 = Texture::Create("res/image/awesomeface.png", 1);
+
+
+	std::string vertexShader = { R"(
 #version 330 core
 layout(location=0) in vec3 vPosition;
+layout(location=1) in vec2 vUV;
+out vec2 fUV;
 void main()
 {
+	fUV = vUV;
 	gl_Position = vec4(vPosition/2, 1.0);
 }
 )" };
-    std::string fragmentShader = { R"(
+	std::string fragmentShader = { R"(
 #version 330 core
-uniform vec3 color;
+in vec2 fUV;
+uniform sampler2D tex1;
+uniform sampler2D tex2;
 void main()
 {
-    gl_FragColor = vec4(color,1);
+    gl_FragColor = mix(texture(tex1,fUV),texture(tex2,fUV),0.2);
 }
 )" };
 
     Program program(vertexShader, fragmentShader, false);
-    program.SetUniform("color", glm::vec3(0.5, 1, 0.8));
+	program.SetUniform("tex1", upTexture1.get());
+	program.SetUniform("tex2", upTexture2.get());
 
     glClearColor(0.8, 0.8, 0.8, 1.0);
     while (!glfwWindowShouldClose(window))

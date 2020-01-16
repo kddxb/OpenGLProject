@@ -62,3 +62,10 @@ void FileTool::Copy(std::string src, std::string dst)
 	in.close();
 	out.close();
 }
+
+
+bool FileTool::IsFileExist(const std::string & fileName)
+{
+	struct stat buffer;
+	return (stat(fileName.c_str(), &buffer) == 0);
+}

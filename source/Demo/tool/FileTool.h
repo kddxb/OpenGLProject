@@ -13,4 +13,7 @@ public:
 
 	//拷贝文件
 	static void Copy(std::string src, std::string dst);
+
+	//文件是否存在
+	static bool IsFileExist(const std::string& fileName);
 };

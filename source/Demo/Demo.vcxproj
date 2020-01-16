@@ -27,9 +27,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera\Camera.cpp" />
+    <ClCompile Include="config\Config.cpp" />
     <ClCompile Include="geometry\Sphere.cpp" />
     <ClCompile Include="geometry\Vertex.cpp" />
+    <ClCompile Include="log\Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="test10.cpp" />
     <ClCompile Include="OpenGLWindow.cpp" />
     <ClCompile Include="shader\Program.cpp" />
@@ -49,16 +52,20 @@
     <ClCompile Include="test08.cpp" />
     <ClCompile Include="test09.cpp" />
     <ClCompile Include="test11.cpp" />
+    <ClCompile Include="texture\texture.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera\Camera.h" />
+    <ClInclude Include="config\Config.h" />
     <ClInclude Include="geometry\Sphere.h" />
     <ClInclude Include="geometry\Vertex.h" />
+    <ClInclude Include="log\Log.h" />
     <ClInclude Include="OpenGLWindow.h" />
     <ClInclude Include="shader\Program.h" />
     <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="texture\texture.h" />
     <ClInclude Include="tool\FileTool.h" />
     <ClInclude Include="tool\MathTool.h" />
   </ItemGroup>
@@ -133,7 +140,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -150,7 +157,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -168,7 +175,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -189,7 +196,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
