@@ -52,7 +52,7 @@
     <ClCompile Include="test08.cpp" />
     <ClCompile Include="test09.cpp" />
     <ClCompile Include="test11.cpp" />
-    <ClCompile Include="texture\texture.cpp" />
+    <ClCompile Include="texture\Texture.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
   </ItemGroup>
@@ -65,7 +65,7 @@
     <ClInclude Include="OpenGLWindow.h" />
     <ClInclude Include="shader\Program.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="texture\texture.h" />
+    <ClInclude Include="texture\Texture.h" />
     <ClInclude Include="tool\FileTool.h" />
     <ClInclude Include="tool\MathTool.h" />
   </ItemGroup>

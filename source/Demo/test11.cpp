@@ -68,7 +68,7 @@ int main11()
 
 	std::unique_ptr<Texture> upTexture1 = Texture::Create("res/image/container.jpg", 0);
 	std::unique_ptr<Texture> upTexture2 = Texture::Create("res/image/awesomeface.png", 1);
-
+    upTexture1->SetTextUnit(1);
 
 	std::string vertexShader = { R"(
 #version 330 core
@@ -91,7 +91,6 @@ void main()
     gl_FragColor = mix(texture(tex1,fUV),texture(tex2,fUV),0.2);
 }
 )" };
-
     Program program(vertexShader, fragmentShader, false);
 	program.SetUniform("tex1", upTexture1.get());
 	program.SetUniform("tex2", upTexture2.get());

@@ -13,14 +13,32 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="shaders">
+    <Filter Include="test">
+      <UniqueIdentifier>{ddcdbc58-2215-45cb-9af4-de8376993314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{92302158-d2a6-43b2-922c-13f0a933d7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{3be27edc-9f4f-4de3-9eb1-f049d592e767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shader">
       <UniqueIdentifier>{7cd9779d-eb0e-47e6-9042-3b98c332bc3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="camera">
+      <UniqueIdentifier>{f05403f4-1b0a-48b3-a326-1dc9ee827375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tool">
+      <UniqueIdentifier>{15cad5af-5fe3-4ebc-9e42-112c83127720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="texture">
+      <UniqueIdentifier>{ac6db9e0-d084-4d71-a451-a0d8ee643e42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="geometry">
+      <UniqueIdentifier>{6defa26f-88db-4887-abda-26502751d267}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="copy.bat">
-      <Filter>源文件</Filter>
-    </None>
     <None Include="config.json">
       <Filter>资源文件</Filter>
     </None>
@@ -33,6 +51,9 @@
     <None Include="res\programs.json">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="copy.bat">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,106 +62,106 @@
     <ClCompile Include="OpenGLWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="camera\Camera.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\Sphere.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="geometry\Vertex.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="shader\Program.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="tool\FileTool.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="tool\MathTool.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test01.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test02.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test03.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test04.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test05.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test06.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test07.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test08.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test09.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test10.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="test11.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="texture\texture.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="test01.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test02.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test03.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test04.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test05.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test06.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test07.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test08.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test09.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test10.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test11.cpp">
+      <Filter>test</Filter>
     </ClCompile>
     <ClCompile Include="log\Log.cpp">
-      <Filter>源文件</Filter>
+      <Filter>log</Filter>
     </ClCompile>
     <ClCompile Include="config\Config.cpp">
-      <Filter>源文件</Filter>
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="shader\Program.cpp">
+      <Filter>shader</Filter>
+    </ClCompile>
+    <ClCompile Include="camera\Camera.cpp">
+      <Filter>camera</Filter>
+    </ClCompile>
+    <ClCompile Include="tool\FileTool.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+    <ClCompile Include="tool\MathTool.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\Texture.cpp">
+      <Filter>texture</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Sphere.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Vertex.cpp">
+      <Filter>geometry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="camera\Camera.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\Sphere.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\Vertex.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="shader\Program.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="tool\MathTool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="tool\FileTool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="StdAfx.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="texture\texture.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="log\Log.h">
-      <Filter>头文件</Filter>
+      <Filter>log</Filter>
     </ClInclude>
     <ClInclude Include="config\Config.h">
-      <Filter>头文件</Filter>
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="shader\Program.h">
+      <Filter>shader</Filter>
+    </ClInclude>
+    <ClInclude Include="camera\Camera.h">
+      <Filter>camera</Filter>
+    </ClInclude>
+    <ClInclude Include="tool\FileTool.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="tool\MathTool.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="texture\Texture.h">
+      <Filter>texture</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Vertex.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Sphere.h">
+      <Filter>geometry</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

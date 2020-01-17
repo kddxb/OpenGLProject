@@ -14,7 +14,7 @@
 Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool isFromFile)
 {
     m_ID = glCreateProgram();
-    std::vector<unsigned int> toDeletedShader;
+    std::vector<unsigned int> shadersToBeDeleted;
     bool successCreated = true;
 
     //当着色器创建失败时进行资源回收
@@ -30,7 +30,7 @@ Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool is
             if (!*m_SuccessCreated)
                 glDeleteProgram(*m_ProgramID);
         }
-    }garbageCheck(&toDeletedShader, &successCreated, &m_ID);
+    }garbageCheck(&shadersToBeDeleted, &successCreated, &m_ID);
 
     for (const std::pair<ShaderType, std::string>& pair : shadersSource)
     {
@@ -82,7 +82,7 @@ Program::Program(const std::map<ShaderType, std::string>& shadersSource, bool is
         }
         glAttachShader(m_ID, anyTypeShader);
         //记录待删除的着色器
-        toDeletedShader.push_back(anyTypeShader);
+        shadersToBeDeleted.push_back(anyTypeShader);
     }
 
     Link();
