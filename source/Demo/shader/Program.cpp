@@ -179,7 +179,12 @@ void Program::SetUniform(const std::string &uniformName, const glm::mat4 &mat) c
     glProgramUniformMatrix4fv(this->m_ID, glGetUniformLocation(this->m_ID, uniformName.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Program::SetUniform(const std::string & uniformName, Texture * pTexture)const
+void Program::SetUniform(const std::string & uniformName, Texture1D * pTexture)const
+{
+	SetUniform(uniformName, pTexture->GetTextureUnit());
+}
+
+void Program::SetUniform(const std::string & uniformName, Texture2D * pTexture)const
 {
 	SetUniform(uniformName, pTexture->GetTextureUnit());
 }

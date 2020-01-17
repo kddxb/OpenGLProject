@@ -6,7 +6,7 @@
 #include "texture.h"
 #include <memory>
 
-
+//测试一维纹理封装类Texture1D
 int main11()
 {
     glfwInit();
@@ -34,10 +34,10 @@ int main11()
     }
 
     float vertics[] = {
-        -1,-1,0,	0,0,
-        1,-1,0,		1,0,
-        1,1,0,		1,1,
-        -1,1,0,		0,1
+        -1,-1,0,	0,
+        1,-1,0,		1,
+        1,1,0,		1,
+        -1,1,0,		0,
     };
 
     unsigned int indices[] = {
@@ -57,43 +57,41 @@ int main11()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(0));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(0));
     glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	std::unique_ptr<Texture> upTexture1 = Texture::Create("res/image/container.jpg", 0);
-	std::unique_ptr<Texture> upTexture2 = Texture::Create("res/image/awesomeface.png", 1);
-    upTexture1->SetTextUnit(1);
+	std::vector<unsigned char> data;
+	for (int i = 0; i < 255; ++i) { data.push_back(i); data.push_back(255 - i); data.push_back(255); }
+	std::unique_ptr<Texture1D> upTexture = Texture1D::Create(data.data(), data.size() / 3, 3, 0);
 
 	std::string vertexShader = { R"(
 #version 330 core
 layout(location=0) in vec3 vPosition;
-layout(location=1) in vec2 vUV;
-out vec2 fUV;
+layout(location=1) in vec2 vU;
+out vec2 fU;
 void main()
 {
-	fUV = vUV;
+	fU = vU;
 	gl_Position = vec4(vPosition/2, 1.0);
 }
 )" };
 	std::string fragmentShader = { R"(
 #version 330 core
-in vec2 fUV;
-uniform sampler2D tex1;
-uniform sampler2D tex2;
+in vec2 fU;
+uniform sampler1D tex;
 void main()
 {
-    gl_FragColor = mix(texture(tex1,fUV),texture(tex2,fUV),0.2);
+    gl_FragColor = texture(tex,fU.s);
 }
 )" };
     Program program(vertexShader, fragmentShader, false);
-	program.SetUniform("tex1", upTexture1.get());
-	program.SetUniform("tex2", upTexture2.get());
+	program.SetUniform("tex", upTexture.get());
 
     glClearColor(0.8, 0.8, 0.8, 1.0);
     while (!glfwWindowShouldClose(window))

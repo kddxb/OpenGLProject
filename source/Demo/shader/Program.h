@@ -17,7 +17,8 @@ enum class ProgramType
 	Default = 0,
 };
 
-class Texture;
+class Texture1D;
+class Texture2D;
 
 class Program
 {
@@ -56,7 +57,8 @@ public:
 	void SetUniform(const std::string &uniformName, const glm::mat2 &mat) const;
 	void SetUniform(const std::string &uniformName, const glm::mat3 &mat) const;
 	void SetUniform(const std::string &uniformName, const glm::mat4 &mat) const;
-	void SetUniform(const std::string &uniformName, Texture* pTexture)const;
+	void SetUniform(const std::string &uniformName, Texture1D* pTexture)const;
+	void SetUniform(const std::string &uniformName, Texture2D* pTexture)const;
 
     void SetUniform(const std::string &uniformName, const std::vector<bool> &values) const;
     void SetUniform(const std::string &uniformName, const std::vector<int> &values) const;
