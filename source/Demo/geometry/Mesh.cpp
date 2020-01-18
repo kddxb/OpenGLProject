@@ -9,6 +9,7 @@
 Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<glm::uvec3>& indices, const glm::mat4& modelMatrix)
 	: m_Vertices(vertices)
 	, m_Indices(indices)
+	, m_ModelMatrix(modelMatrix)
 	, m_ProgramType(ProgramType::Mesh)
 {
 }

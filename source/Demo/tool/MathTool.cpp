@@ -55,3 +55,8 @@ bool MathTool::IsSameVec(const glm::vec3& a, const glm::vec3& b, float delta /*=
 {
 	return glm::length(a - b) < delta;
 }
+
+double MathTool::PI()
+{
+	return 3.141592653;
+}

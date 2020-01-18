@@ -21,6 +21,8 @@ public:
 	ProgramType GetProgramType()const;
 	Program* GetProgram()const;
 	void SetProgramType(const ProgramType& programType);
+	bool IsVisible()const { return m_IsVisible; }
+	void SetVisible(bool isVisible) { m_IsVisible = isVisible; }
 	void SetCallBack(std::function<void(Mesh*, double)> callBack);
 
 	const glm::mat4& GetModelMatrix() const;
@@ -31,11 +33,12 @@ public:
 	void Scale(const glm::vec3& v);
 	void Transform(const glm::mat4& transformMatrix);
 
-private:
+protected:
 	unsigned int m_VAO;
 	std::vector<Vertex> m_Vertices;
 	std::vector<glm::uvec3> m_Indices;
 	glm::mat4 m_ModelMatrix;
 	ProgramType m_ProgramType;
+	bool m_IsVisible = true;
 	std::function<void(Mesh*, double)> m_CallBack = nullptr;
 };

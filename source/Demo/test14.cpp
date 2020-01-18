@@ -7,6 +7,7 @@
 #include "Mesh.h"
 #include <GLM/gtx/transform.hpp>
 
+//≤‚ ‘Meshø…”√–‘
 int main14()
 {
 	glfwInit();
@@ -34,10 +35,10 @@ int main14()
 	}
 
 	std::vector<Vertex> vertics = {
-		Vertex(glm::vec3(-1,-1,0),glm::vec3(1,0,0)),
-		Vertex(glm::vec3(1,-1,0),glm::vec3(0,1,0)),
-		Vertex(glm::vec3(1,1,0),glm::vec3(0,0,1)),
-		Vertex(glm::vec3(-1,1,0),glm::vec3(1,1,0)),
+		Vertex(glm::vec3(-1,-1,0),glm::vec4(1,0,0,1)),
+		Vertex(glm::vec3(1,-1,0),glm::vec4(0,1,0,1)),
+		Vertex(glm::vec3(1,1,0),glm::vec4(0,0,1,1)),
+		Vertex(glm::vec3(-1,1,0),glm::vec4(1,1,0,1)),
 	};
 
 	std::vector<glm::uvec3> indices = {
@@ -55,7 +56,7 @@ int main14()
 	pProgram->SetUniform("view", glm::mat4(1.0f));
 	pProgram->SetUniform("projection", glm::mat4(1.0f));
 
-	glClearColor(0.8, 0.8, 0.8, 1.0);
+	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 	while (!glfwWindowShouldClose(window))
 	{
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)

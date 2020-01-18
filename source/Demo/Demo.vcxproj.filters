@@ -152,6 +152,21 @@
     <ClCompile Include="geometry\Mesh.cpp">
       <Filter>geometry</Filter>
     </ClCompile>
+    <ClCompile Include="geometry\Point.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Polyline.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\MeshUtils.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="test15.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="test16.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">
@@ -194,6 +209,15 @@
       <Filter>tool</Filter>
     </ClInclude>
     <ClInclude Include="geometry\Mesh.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Point.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Polyline.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\MeshUtils.h">
       <Filter>geometry</Filter>
     </ClInclude>
   </ItemGroup>

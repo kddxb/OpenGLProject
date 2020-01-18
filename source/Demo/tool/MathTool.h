@@ -25,4 +25,7 @@ public:
 
 	//两个点事否重合
 	static bool IsSameVec(const glm::vec3& a, const glm::vec3& b, float delta = 1e-4);
+
+	//圆周率
+	static double PI();
 };

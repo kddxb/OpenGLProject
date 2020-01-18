@@ -31,7 +31,10 @@
     <ClCompile Include="camera\Camera.cpp" />
     <ClCompile Include="config\Config.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="geometry\MeshUtils.cpp" />
     <ClCompile Include="geometry\Mesh.cpp" />
+    <ClCompile Include="geometry\Point.cpp" />
+    <ClCompile Include="geometry\Polyline.cpp" />
     <ClCompile Include="geometry\Sphere.cpp" />
     <ClCompile Include="geometry\Vertex.cpp" />
     <ClCompile Include="log\Log.cpp" />
@@ -59,6 +62,8 @@
     <ClCompile Include="test11.cpp" />
     <ClCompile Include="test12.cpp" />
     <ClCompile Include="test14.cpp" />
+    <ClCompile Include="test15.cpp" />
+    <ClCompile Include="test16.cpp" />
     <ClCompile Include="texture\Texture.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
@@ -67,8 +72,11 @@
   <ItemGroup>
     <ClInclude Include="camera\Camera.h" />
     <ClInclude Include="config\Config.h" />
+    <ClInclude Include="geometry\MeshUtils.h" />
     <ClInclude Include="geometry\Geometry.h" />
     <ClInclude Include="geometry\Mesh.h" />
+    <ClInclude Include="geometry\Point.h" />
+    <ClInclude Include="geometry\Polyline.h" />
     <ClInclude Include="geometry\Sphere.h" />
     <ClInclude Include="geometry\Vertex.h" />
     <ClInclude Include="log\Log.h" />
