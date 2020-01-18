@@ -70,7 +70,7 @@ int main12()
 	std::unique_ptr<Texture2D> upTexture = Texture2D::Create("res/image/container.jpg", 0);
 
 	std::string vertexShader = { R"(
-#version 330 core
+#version 430 core
 layout(location=0) in vec3 vPosition;
 layout(location=1) in vec2 vUV;
 uniform mat4 model;
@@ -82,7 +82,7 @@ void main()
 }
 )" };
 	std::string fragmentShader = { R"(
-#version 330 core
+#version 430 core
 in vec2 fUV;
 uniform sampler2D tex;
 void main()

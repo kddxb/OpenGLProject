@@ -71,7 +71,7 @@ int main11()
 	std::unique_ptr<Texture1D> upTexture = Texture1D::Create(data.data(), data.size() / 3, 3, 0);
 
 	std::string vertexShader = { R"(
-#version 330 core
+#version 430 core
 layout(location=0) in vec3 vPosition;
 layout(location=1) in float vU;
 out float fU;
@@ -82,7 +82,7 @@ void main()
 }
 )" };
 	std::string fragmentShader = { R"(
-#version 330 core
+#version 430 core
 in float fU;
 uniform sampler1D tex;
 void main()

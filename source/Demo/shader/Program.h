@@ -15,6 +15,7 @@ enum class ShaderType
 enum class ProgramType
 {
 	Default = 0,
+	Mesh = 1
 };
 
 class Texture1D;
@@ -100,5 +101,4 @@ public:
 	static Program* Get(ProgramType programType);
 private:
 	static std::map<ProgramType, std::unique_ptr<Program>> m_Programs;
-	static bool m_Inited;
 };

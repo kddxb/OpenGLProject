@@ -54,6 +54,12 @@
     <None Include="copy.bat">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\mesh.frag">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\mesh.vert">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -134,6 +140,18 @@
     <ClCompile Include="test13.cpp">
       <Filter>test</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="test14.cpp">
+      <Filter>test</Filter>
+    </ClCompile>
+    <ClCompile Include="tool\TimeTool.cpp">
+      <Filter>tool</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\Mesh.cpp">
+      <Filter>geometry</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGLWindow.h">
@@ -167,6 +185,15 @@
       <Filter>geometry</Filter>
     </ClInclude>
     <ClInclude Include="geometry\Sphere.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Geometry.h">
+      <Filter>geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="tool\TimeTool.h">
+      <Filter>tool</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\Mesh.h">
       <Filter>geometry</Filter>
     </ClInclude>
   </ItemGroup>

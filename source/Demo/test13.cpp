@@ -99,7 +99,7 @@ int main13()
 	std::unique_ptr<Texture2D> upTexture = Texture2D::Create("res/image/1234.png", 0);
 
 	std::string textureVertexShader = { R"(
-#version 330 core
+#version 430 core
 layout(location=0) in vec3 vPosition;
 layout(location=1) in vec2 vUV;
 uniform mat4 model;
@@ -113,7 +113,7 @@ void main()
 }
 )" };
 	std::string textureFragmentShader = { R"(
-#version 330 core
+#version 430 core
 in vec2 fUV;
 uniform sampler2D tex;
 void main()
@@ -123,7 +123,7 @@ void main()
 )" };
 
 	std::string lineVertexShader = R"(
-#version 330 core
+#version 430 core
 layout(location=0) in vec3 vPosition;
 layout(location=1) in vec3 vColor;
 uniform mat4 model;
@@ -137,7 +137,7 @@ void main()
 }
 )";
 	std::string lineFragmentShader = R"(
-#version 330 core
+#version 430 core
 in vec3 fColor;
 void main()
 {

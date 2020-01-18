@@ -364,7 +364,6 @@ bool Program::CheckProgramLinkError()
 }
 
 std::map<ProgramType, std::unique_ptr<Program>> ProgramFactory::m_Programs;
-bool ProgramFactory::m_Inited = false;
 
 bool ProgramFactory::Init()
 {
@@ -378,7 +377,7 @@ bool ProgramFactory::Init()
         for (int programIndex = 0; programIndex < int(programs.size()); ++programIndex)
         {
             Json::Value program = programs[programIndex];
-            std::string programName = program["uniformName"].asString();
+            std::string programName = program["name"].asString();
             ProgramType programType = static_cast<ProgramType>(program["type"].asInt());
             Json::Value shaders = program["shaders"];
             std::map<ShaderType, std::string> shadersSource;
@@ -409,10 +408,11 @@ bool ProgramFactory::Init()
 
 Program * ProgramFactory::Get(ProgramType programType)
 {
-    if (!m_Inited)
+	static bool isProgramFactoryInited = false;
+    if (!isProgramFactoryInited)
     {
         Init();
-        m_Inited = true;
+        isProgramFactoryInited = true;
     }
     auto it = m_Programs.find(programType);
     if (it != m_Programs.end())

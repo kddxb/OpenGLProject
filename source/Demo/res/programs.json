@@ -1,4 +1,5 @@
 {
+  "note": "programs/type: 0-default, 1-mesh; programs/shaders/type: 0-vertex shader, 1-fragment shader, 2-geometry shader",
   "programs": [
     {
       "name": "Default",
@@ -11,6 +12,20 @@
         {
           "type": 1,
           "path": "res/default.frag"
+        }
+      ]
+    },
+    {
+      "name": "Mesh",
+      "type": 1,
+      "shaders": [
+        {
+          "type": 0,
+          "path": "res/mesh.vert"
+        },
+        {
+          "type": 1,
+          "path": "res/mesh.frag"
         }
       ]
     }

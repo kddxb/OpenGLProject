@@ -4,6 +4,12 @@
 
 class FileTool
 {
+private:
+	FileTool() = delete;
+	FileTool& operator=(const FileTool&) = delete;
+	FileTool(const FileTool&) = delete;
+	~FileTool() = delete;
+
 public:
 	//获取某文件文本内容
 	static std::string ReadFile(const std::string& fileName);

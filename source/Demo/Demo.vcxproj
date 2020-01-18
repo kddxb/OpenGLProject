@@ -23,11 +23,15 @@
     <None Include="copy.bat" />
     <None Include="res\default.frag" />
     <None Include="res\default.vert" />
+    <None Include="res\mesh.frag" />
+    <None Include="res\mesh.vert" />
     <None Include="res\programs.json" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="camera\Camera.cpp" />
     <ClCompile Include="config\Config.cpp" />
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="geometry\Mesh.cpp" />
     <ClCompile Include="geometry\Sphere.cpp" />
     <ClCompile Include="geometry\Vertex.cpp" />
     <ClCompile Include="log\Log.cpp" />
@@ -54,13 +58,17 @@
     <ClCompile Include="test09.cpp" />
     <ClCompile Include="test11.cpp" />
     <ClCompile Include="test12.cpp" />
+    <ClCompile Include="test14.cpp" />
     <ClCompile Include="texture\Texture.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
+    <ClCompile Include="tool\TimeTool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera\Camera.h" />
     <ClInclude Include="config\Config.h" />
+    <ClInclude Include="geometry\Geometry.h" />
+    <ClInclude Include="geometry\Mesh.h" />
     <ClInclude Include="geometry\Sphere.h" />
     <ClInclude Include="geometry\Vertex.h" />
     <ClInclude Include="log\Log.h" />
@@ -70,6 +78,7 @@
     <ClInclude Include="texture\Texture.h" />
     <ClInclude Include="tool\FileTool.h" />
     <ClInclude Include="tool\MathTool.h" />
+    <ClInclude Include="tool\TimeTool.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{86E299FB-A6AC-4203-ADF9-9D8027EF5DD4}</ProjectGuid>
@@ -144,7 +153,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
@@ -161,7 +170,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>../../thirdparty/lib/$(PlatformTarget)/$(configuration);$(SolutionDir)..\bin\$(PlatformTarget)$(Configuration)</AdditionalLibraryDirectories>
@@ -179,7 +188,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -200,7 +209,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../../thirdparty/include;./;./tool;./geometry;./shader;./camera;./texture;./log;./config</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PreprocessorDefinitions>GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NOMINMAX;GLM_SWIZZLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>

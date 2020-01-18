@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "Config.h"
 
-int main13();
+int main14();
 
 int main(int argc,char** argv)
 {
@@ -9,5 +9,5 @@ int main(int argc,char** argv)
 	std::string exePath = exeFullName.substr(0, exeFullName.find_last_of('\\') + 1);
 	Config::GetInstance()->Init(exePath, "config.json");
 
-    return main13();
+    return main14();
 }

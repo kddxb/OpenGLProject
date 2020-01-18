@@ -8,7 +8,7 @@
 int main02()
 {
 	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -85,7 +85,7 @@ int main02()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	std::string vertexShader = { R"(
-#version 330 core
+#version 430 core
 layout(location=0) in vec3 vPosition;
 layout(location=1) in vec3 vColor;
 layout(location=2) in vec2 vUV;
@@ -99,7 +99,7 @@ void main()
 }
 )" };
 	std::string fragmentShader = { R"(
-#version 330 core
+#version 430 core
 in vec3 fColor;
 in vec2 fUV;
 uniform float t;

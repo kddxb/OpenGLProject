@@ -93,7 +93,7 @@ int main09()
 	}
 
 	std::string vertexShader = { R"(
-#version 330 core
+#version 430 core
 layout (location = 0) in vec3 vPos;
 layout (location = 1) in vec2 vUV;
 out vec2 fUV;
@@ -105,7 +105,7 @@ void main()
 )" };
 
 	std::string fragmentShader = { R"(
-#version 330 core
+#version 430 core
 out vec4 FragColor;
 in vec2 fUV;
 uniform sampler2D tex;
