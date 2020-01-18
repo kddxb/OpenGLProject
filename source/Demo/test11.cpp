@@ -73,8 +73,8 @@ int main11()
 	std::string vertexShader = { R"(
 #version 330 core
 layout(location=0) in vec3 vPosition;
-layout(location=1) in vec2 vU;
-out vec2 fU;
+layout(location=1) in float vU;
+out float fU;
 void main()
 {
 	fU = vU;
@@ -83,7 +83,7 @@ void main()
 )" };
 	std::string fragmentShader = { R"(
 #version 330 core
-in vec2 fU;
+in float fU;
 uniform sampler1D tex;
 void main()
 {

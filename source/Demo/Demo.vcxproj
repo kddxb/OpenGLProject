@@ -32,6 +32,7 @@
     <ClCompile Include="geometry\Vertex.cpp" />
     <ClCompile Include="log\Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="test13.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="test10.cpp" />
     <ClCompile Include="OpenGLWindow.cpp" />
@@ -52,6 +53,7 @@
     <ClCompile Include="test08.cpp" />
     <ClCompile Include="test09.cpp" />
     <ClCompile Include="test11.cpp" />
+    <ClCompile Include="test12.cpp" />
     <ClCompile Include="texture\Texture.cpp" />
     <ClCompile Include="tool\FileTool.cpp" />
     <ClCompile Include="tool\MathTool.cpp" />
