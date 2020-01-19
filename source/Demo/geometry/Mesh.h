@@ -24,6 +24,7 @@ public:
 	bool IsVisible()const { return m_IsVisible; }
 	void SetVisible(bool isVisible) { m_IsVisible = isVisible; }
 	void SetCallBack(std::function<void(Mesh*, double)> callBack);
+    bool IsSetup()const { return m_IsSetup; }
 
 	const glm::mat4& GetModelMatrix() const;
 	void SetModelMatrix(const glm::mat4& modelMatrix);
@@ -40,5 +41,6 @@ protected:
 	glm::mat4 m_ModelMatrix;
 	ProgramType m_ProgramType;
 	bool m_IsVisible = true;
+    bool m_IsSetup = false;
 	std::function<void(Mesh*, double)> m_CallBack = nullptr;
 };

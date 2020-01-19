@@ -36,6 +36,10 @@ std::unique_ptr<Mesh> Mesh::Create(const std::vector<Vertex>& vertices, const st
 
 void Mesh::Setup()
 {
+    if (m_IsSetup)
+    {
+        return;
+    }
 	unsigned int VBO, EBO;
 	glGenVertexArrays(1, &m_VAO);
 	glBindVertexArray(m_VAO);
@@ -56,6 +60,8 @@ void Mesh::Setup()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    m_IsSetup = true;
 }
 
 void Mesh::Update()
